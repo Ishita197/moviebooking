@@ -1,0 +1,9 @@
+POST http://localhost:8080/api/movies
+Content-Type: application/json
+
+{
+  "title": "Dangal",
+  "language": "Hindi",
+  "duration": 161,
+  "rating": 8.3
+}
