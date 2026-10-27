@@ -3,6 +3,7 @@ package com.ishita.moviebooking.controller;
 
 import com.ishita.moviebooking.entity.Show;
 import com.ishita.moviebooking.service.ShowService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,14 +24,14 @@ public class ShowController {
     }
 
     @PostMapping
-    public Show addShow(@RequestBody Show show) {
+    public Show addShow(@Valid @RequestBody Show show) {
         return showService.addShow(show);
     }
 
     @PutMapping("/{id}")
     public Show updateShow(
             @PathVariable Long id,
-            @RequestBody Show show) {
+            @Valid @RequestBody Show show) {
         return showService.updateShow(id, show);
     }
 

@@ -3,6 +3,7 @@ package com.ishita.moviebooking.controller;
 
 import com.ishita.moviebooking.entity.Seat;
 import com.ishita.moviebooking.service.SeatService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -25,7 +26,7 @@ public class SeatController {
     }
 
     @PostMapping
-    public ResponseEntity<?> addSeat(@RequestBody Seat seat) {
+    public ResponseEntity<?> addSeat(@Valid @RequestBody Seat seat) {
         try {
             Seat savedSeat = seatService.addSeat(seat);
             return ResponseEntity.status(HttpStatus.CREATED).body(savedSeat);
@@ -34,7 +35,6 @@ public class SeatController {
                     .body(e.getMessage());
         }
     }
-
 
     @PutMapping("/{seatId}/book")
     public ResponseEntity<?> bookSeat(@PathVariable Long seatId) {
@@ -52,6 +52,5 @@ public class SeatController {
             throw e;
         }
     }
-
-
 }
+

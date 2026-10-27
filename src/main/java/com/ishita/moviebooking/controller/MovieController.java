@@ -3,6 +3,7 @@ package com.ishita.moviebooking.controller;
 
 import com.ishita.moviebooking.entity.Movie;
 import com.ishita.moviebooking.service.MovieService;
+import jakarta.validation.Valid;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -23,14 +24,14 @@ public class MovieController {
     }
 
     @PostMapping
-    public Movie addMovie(@RequestBody Movie movie) {
+    public Movie addMovie(@Valid @RequestBody Movie movie) {
         return movieService.addMovie(movie);
     }
 
     @PutMapping("/{id}")
     public Movie updateMovie(
             @PathVariable Long id,
-            @RequestBody Movie movie) {
+            @Valid @RequestBody Movie movie) {
         return movieService.updateMovie(id, movie);
     }
 
@@ -38,6 +39,5 @@ public class MovieController {
     public void deleteMovie(@PathVariable Long id) {
         movieService.deleteMovie(id);
     }
-
-
 }
+

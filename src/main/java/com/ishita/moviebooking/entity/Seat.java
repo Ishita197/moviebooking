@@ -2,6 +2,8 @@
 package com.ishita.moviebooking.entity;
 
 import jakarta.persistence.*;
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 
 @Entity
 @Table(
@@ -17,10 +19,12 @@ public class Seat {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    @NotBlank(message = "Seat number cannot be blank")
     private String seatNumber;
 
     private boolean booked = false;
 
+    @NotNull(message = "Show is required")
     @ManyToOne
     @JoinColumn(name = "show_id", nullable = false)
     private Show show;
