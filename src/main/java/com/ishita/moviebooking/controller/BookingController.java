@@ -50,5 +50,9 @@ public class BookingController {
             throw e;
         }
     }
+    @GetMapping
+    public ResponseEntity<?> getAllBookings() {
+        return ResponseEntity.ok(bookingService.getAllBookings());
+    }
 }
 

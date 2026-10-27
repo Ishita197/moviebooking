@@ -7,7 +7,7 @@ import com.ishita.moviebooking.repository.BookingRepository;
 import com.ishita.moviebooking.repository.SeatRepository;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-
+import java.util.List;
 import java.time.LocalDateTime;
 
 @Service
@@ -25,7 +25,7 @@ public class BookingService {
 
     @Transactional
     public Booking bookSeat(Long seatId) {
-        Seat seat = seatRepository.findById(seatId)
+        Seat seat = seatRepository.findByIdForUpdate(seatId)
                 .orElseThrow(() ->
                         new RuntimeException("Seat not found"));
 
@@ -47,5 +47,8 @@ public class BookingService {
     public Booking getBookingById(Long bookingId) {
         return bookingRepository.findById(bookingId)
                 .orElseThrow(() -> new RuntimeException("Booking not found"));
+    }
+    public List<Booking> getAllBookings() {
+        return bookingRepository.findAll();
     }
 }
